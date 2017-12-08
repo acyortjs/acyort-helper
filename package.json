@@ -31,11 +31,11 @@
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.1",
+    "acyort-render": "^0.1.0",
     "power-assert": "^1.4.4"
   },
   "dependencies": {
     "acyort-i18n": "^0.1.1",
-    "acyort-render": "^0.1.0",
     "moment": "^2.19.3",
     "moment-timezone": "^0.5.14"
   }
