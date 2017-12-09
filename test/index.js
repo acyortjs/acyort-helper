@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const assert = require('power-assert')
 const Renderer = require('acyort-render')
 const Helper = require('../')
 
@@ -31,35 +32,51 @@ const {
   _n,
 } = helper.methods
 
-console.log(helper.postsData)
+describe('helper', () => {
+  it('posts data', () => {
+    assert(helper.postsData.length === 0)
+    helper.posts = posts
+    assert(helper.postsData.length === 2)
+    assert(_posts()[0].id === 0)
+    assert(_posts(0).id === 0)
+  })
 
-helper.posts = posts
+  it('url', () => {
+    assert(_url() === '/')
+    assert(_url('path') === '/path')
+  })
 
-console.log(helper.postsData)
-console.log(_posts())
-console.log(_posts(0))
-console.log(_url())
-console.log(_url('path'))
-console.log(_time('2017-11-15T10:50:55Z', 'MMMM DD, YYYY'))
-console.log(__('title'))
-console.log(__('powered', 'GitHub', 'AcyOrt'))
-console.log(_n('posts', 0))
-console.log(_n('posts', 1))
-console.log(_n('posts', 100))
+  it('time', () => {
+    assert(_time('2017-11-15T10:50:55Z', 'MMMM DD, YYYY') === 'November 15, 2017')
+  })
 
-const fn = s => s.split('').join('.')
+  it('i18n', () => {
+    assert(__('title') === 'AcyOrt')
+    assert(__('powered', 'GitHub', 'AcyOrt') === 'Powered by AcyOrt | GitHub')
+    assert(_n('posts', 0) === 'No posts.')
+    assert(_n('posts', 1) === '1 post.')
+    assert(_n('posts', 100) === '100 posts in total.')
+  })
 
-helper.add('_js', fn)
-console.log(helper.methods._js('ab'))
+  it('add helper', () => {
+    const fn = s => s.split('').join('.') + config.theme
+    helper.add('_js', fn)
+    assert(helper.methods._js('ab') === 'a.bccc45')
+    helper.add('_css', 'no a function')
+    assert(helper.methods._css === undefined)
+  })
 
-text = `title: Mirror
+  it('reset', () => {
+    text = `title: Mirror
 powered: Powered by %2$s | %1$s
 posts:
   zero: No posts.
   one: 1 post.
   other: %d posts in total.`
 
-fs.writeFileSync(yml, text)
-helper.resetLocales()
+    fs.writeFileSync(yml, text)
+    helper.resetLocales()
 
-console.log(__('title'))
+    assert(__('title') === 'Mirror')
+  })
+})

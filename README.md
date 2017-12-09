@@ -55,8 +55,8 @@ console.log(_url('path'))       // /path
 console.log(_time('2017-11-15T10:50:55Z', 'MMMM DD, YYYY'))   // November 15, 2017
 console.log(__('title'))        // AcyOrt
 console.log(__('powered', 'GitHub', 'AcyOrt'))  // Powered by AcyOrt | GitHub
-console.log(_n('posts', 0))     // No posts
-console.log(_n('posts', 1))     // 1 post
+console.log(_n('posts', 0))     // No posts.
+console.log(_n('posts', 1))     // 1 post.
 console.log(_n('posts', 100))   // 100 posts in total.
 
 const fn = s => s.split('').join('.')
