@@ -9,10 +9,11 @@ class I18n extends I18nFn {
       config: {
         theme,
         language,
+        base,
       },
     } = acyort
     const i18n = {}
-    const directory = path.join(process.cwd(), 'themes', theme, 'i18n')
+    const directory = path.join(base, 'themes', theme, 'i18n')
 
     super({
       locales: [language],

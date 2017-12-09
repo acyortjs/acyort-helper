@@ -1,0 +1,6 @@
+title: Mirror
+powered: Powered by %2$s | %1$s
+posts:
+  zero: No posts.
+  one: 1 post.
+  other: %d posts in total.

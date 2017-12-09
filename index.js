@@ -17,25 +17,28 @@ class Helper extends I18n {
 
     moment.locale(language)
 
-    this.data = []
-    this.helpers = {
-      config,
+    this.postsData = []
+    this.methods = {
       __,
       _n: __n,
-      _posts: () => this.data.map(p => p.id),
-      _post: id => this.data.find(p => p.id === id),
+      _posts: id => {
+        if (id === undefined) {
+          return this.postsData
+        }
+        return this.postsData.find(p => p.id === id)
+      },
       _url: dir => path.join(root, dir || ''),
       _time: (time, format) => momentTz(moment(time), timezone).format(format),
     }
   }
 
   set posts(data) {
-    this.data = data
+    this.postsData = data
   }
 
   add(name, fn) {
-    if (typeof fn === 'function' && !this.helpers[name]) {
-      this.helpers[name] = fn
+    if (typeof fn === 'function' && !this.methods[name]) {
+      this.methods[name] = fn
     }
   }
 }
