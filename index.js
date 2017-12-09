@@ -21,7 +21,7 @@ class Helper extends I18n {
     this.methods = {
       __,
       _n: __n,
-      _posts: id => {
+      _posts: (id) => {
         if (id === undefined) {
           return this.postsData
         }
