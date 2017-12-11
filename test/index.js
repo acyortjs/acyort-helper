@@ -1,4 +1,4 @@
-const fs = require('fs-extra')
+const fs = require('fs')
 const path = require('path')
 const assert = require('power-assert')
 const Renderer = require('acyort-render')
@@ -23,7 +23,7 @@ const config = {
   base: __dirname,
 }
 const posts = [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }]
-const helper = new Helper({ config, renderer, fs })
+const helper = new Helper({ config, renderer })
 const {
   _posts,
   _url,
