@@ -1,6 +1,6 @@
 {
   "name": "acyort-helper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Helper functions for AcyOrt",
   "main": "index.js",
   "scripts": {
@@ -25,13 +25,14 @@
   },
   "homepage": "https://github.com/acyortjs/acyort-helper#readme",
   "devDependencies": {
+    "acyort-render": "^0.1.0",
     "eslint": "^4.12.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "fs-extra": "^4.0.3",
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.1",
-    "acyort-render": "^0.1.0",
     "power-assert": "^1.4.4"
   },
   "dependencies": {

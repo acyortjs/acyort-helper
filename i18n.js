@@ -1,17 +1,13 @@
 const I18nFn = require('acyort-i18n')
 const path = require('path')
-const fs = require('fs')
 
 class I18n extends I18nFn {
-  constructor(acyort) {
+  constructor({ fs, config, renderer }) {
     const {
-      renderer,
-      config: {
-        theme,
-        language,
-        base,
-      },
-    } = acyort
+      theme,
+      language,
+      base,
+    } = config
     const i18n = {}
     const directory = path.join(base, 'themes', theme, 'i18n')
 
@@ -24,6 +20,7 @@ class I18n extends I18nFn {
     })
 
     this.i18n = i18n
+    this.fs = fs
   }
 
   resetLocales() {
@@ -35,7 +32,7 @@ class I18n extends I18nFn {
     } = this
     const yml = path.join(directory, locale + extension)
 
-    this.locales = { [locale]: parse(fs.readFileSync(yml)) }
+    this.locales = { [locale]: parse(this.fs.readFileSync(yml)) }
   }
 }
 

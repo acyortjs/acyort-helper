@@ -15,8 +15,9 @@ $ npm i acyort-helper -S
 
 ```js
 // npm i acyort-render -S
+// npm i fs-extra -S
 
-const fs = require('fs')
+const fs = require('fs-extra')
 const path = require('path')
 const Renderer = require('acyort-render')
 const Helper = require('acyort-helper')
@@ -40,7 +41,7 @@ const config = {
   base: __dirname,
 }
 const posts = [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }]
-const helper = new Helper({ config, renderer })
+const helper = new Helper({ config, renderer, fs })
 const {
   _posts,
   _url,
