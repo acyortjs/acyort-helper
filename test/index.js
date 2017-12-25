@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const assert = require('power-assert')
-const expect = require('expect')
 const Renderer = require('acyort-render')
 const Helper = require('../')
 
@@ -79,16 +78,5 @@ posts:
     helper.resetLocales()
 
     assert(__('title') === 'Mirror')
-  })
-
-  it('language error', () => {
-    const _config = JSON.parse(JSON.stringify(config))
-    _config.language = 'en'
-
-    function ex() {
-      return new Helper({ config: _config, renderer })
-    }
-
-    expect(ex).toThrow(`Error: ENOENT: no such file or directory, open '${__dirname}/themes/ccc45/i18n/en.yml`)
   })
 })
