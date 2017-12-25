@@ -8,9 +8,10 @@ class I18n extends I18nFn {
       theme,
       language,
       base,
+      i18n_dir,
     } = config
     const i18n = {}
-    const directory = path.join(base, 'themes', theme, 'i18n')
+    const directory = path.join(base, 'themes', theme, i18n_dir)
 
     super({
       locales: [language],

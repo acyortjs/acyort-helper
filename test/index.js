@@ -19,6 +19,7 @@ const config = {
   language: 'default',
   timezone: 'UTC',
   root: '/',
+  i18n_dir: 'i18n',
   theme: 'ccc45',
   base: __dirname,
 }
