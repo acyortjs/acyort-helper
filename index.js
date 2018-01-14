@@ -4,10 +4,9 @@ const I18n = require('./i18n')
 const path = require('path')
 
 class Helper extends I18n {
-  constructor(acyort) {
-    super(acyort)
+  constructor(config) {
+    super(config)
 
-    const { config } = acyort
     const {
       language,
       timezone,
@@ -17,26 +16,26 @@ class Helper extends I18n {
 
     moment.locale(language)
 
-    this.postsData = []
+    this.posts = []
     this.methods = {
       __,
       _n: __n,
       _posts: (id) => {
         if (id === undefined) {
-          return this.postsData
+          return this.posts
         }
-        return this.postsData.find(p => p.id === id)
+        return this.posts.find(p => p.id === id)
       },
       _url: dir => path.join(root, dir || ''),
       _time: (time, format) => momentTz(moment(time), timezone).format(format),
     }
   }
 
-  set posts(data) {
-    this.postsData = data
+  set postsData(data) {
+    this.posts = data
   }
 
-  add(name, fn) {
+  addMethod(name, fn) {
     if (typeof fn === 'function' && !this.methods[name]) {
       this.methods[name] = fn
     }

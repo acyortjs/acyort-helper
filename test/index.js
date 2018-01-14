@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const assert = require('power-assert')
-const Renderer = require('acyort-render')
 const Helper = require('../')
 
 let text = `title: AcyOrt
@@ -14,7 +13,6 @@ const yml = path.join(__dirname, 'themes/ccc45/i18n', 'default.yml')
 
 fs.writeFileSync(yml, text)
 
-const renderer = new Renderer()
 const config = {
   language: 'default',
   timezone: 'UTC',
@@ -24,7 +22,7 @@ const config = {
   base: __dirname,
 }
 const posts = [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }]
-const helper = new Helper({ config, renderer })
+const helper = new Helper(config)
 const {
   _posts,
   _url,
@@ -35,9 +33,9 @@ const {
 
 describe('helper', () => {
   it('posts data', () => {
-    assert(helper.postsData.length === 0)
-    helper.posts = posts
-    assert(helper.postsData.length === 2)
+    assert(helper.posts.length === 0)
+    helper.postsData = posts
+    assert(helper.posts.length === 2)
     assert(_posts()[0].id === 0)
     assert(_posts(0).id === 0)
   })
@@ -61,9 +59,9 @@ describe('helper', () => {
 
   it('add helper', () => {
     const fn = s => s.split('').join('.') + config.theme
-    helper.add('_js', fn)
+    helper.addMethod('_js', fn)
     assert(helper.methods._js('ab') === 'a.bccc45')
-    helper.add('_css', 'no a function')
+    helper.addMethod('_css', 'no a function')
     assert(helper.methods._css === undefined)
   })
 

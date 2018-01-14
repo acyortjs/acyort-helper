@@ -1,9 +1,11 @@
 const path = require('path')
 const fs = require('fs')
 const I18nFn = require('acyort-i18n')
+const Renderer = require('acyort-render')
 
 class I18n extends I18nFn {
-  constructor({ config, renderer }) {
+  constructor(config) {
+    const renderer = new Renderer()
     const {
       theme,
       language,
