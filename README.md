@@ -18,7 +18,6 @@ $ npm i acyort-helper -S
 
 const fs = require('fs')
 const path = require('path')
-const Renderer = require('acyort-render')
 const Helper = require('acyort-helper')
 
 // language file
@@ -31,7 +30,6 @@ posts:
 const yml = path.join(__dirname, 'themes/ccc45/i18n', 'default.yml')
 fs.writeFileSync(yml, text)
 
-const renderer = new Renderer()
 const config = {
   language: 'default',
   timezone: 'UTC',
@@ -40,7 +38,7 @@ const config = {
   base: __dirname,
 }
 const posts = [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }]
-const helper = new Helper({ config, renderer })
+const helper = new Helper(config)
 const {
   _posts,
   _url,
@@ -49,7 +47,7 @@ const {
   _n,
 } = helper.methods
 
-helper.posts = posts
+helper.postsData = posts
 
 console.log(_posts())           // [ { id: 0, title: 'title0' }, { id: 1, title: 'title1' } ]
 console.log(_posts(0))          // { id: 0, title: 'title0' }
@@ -65,7 +63,7 @@ console.log(_n('posts', 100))   // 100 posts in total.
 const fn = s => s.split('').join('.')
 
 // add custom helper function
-helper.add('_js', fn)
+helper.addMethod('_js', fn)
 console.log(helper.methods._js('ab'))   // a.b
 
 text = `title: Mirror
