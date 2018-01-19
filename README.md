@@ -38,7 +38,7 @@ const config = {
   base: __dirname,
 }
 const posts = [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }]
-const helper = new Helper(config)
+const helper = new Helper({ config, posts })
 const {
   _posts,
   _url,
@@ -46,8 +46,6 @@ const {
   __,
   _n,
 } = helper.methods
-
-helper.postsData = posts
 
 console.log(_posts())           // [ { id: 0, title: 'title0' }, { id: 1, title: 'title1' } ]
 console.log(_posts(0))          // { id: 0, title: 'title0' }

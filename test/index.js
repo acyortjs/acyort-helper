@@ -22,7 +22,7 @@ const config = {
   base: __dirname,
 }
 const posts = [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }]
-const helper = new Helper(config)
+const helper = new Helper({ config, posts })
 const {
   _posts,
   _url,
@@ -33,11 +33,12 @@ const {
 
 describe('helper', () => {
   it('posts data', () => {
-    assert(helper.posts.length === 0)
-    helper.postsData = posts
-    assert(helper.posts.length === 2)
     assert(_posts()[0].id === 0)
     assert(_posts(0).id === 0)
+
+    posts.push({ id: 2, title: 'title2' })
+
+    assert(_posts().length === 3)
   })
 
   it('url', () => {
