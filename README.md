@@ -37,26 +37,38 @@ const config = {
   theme: 'ccc45',
   base: __dirname,
 }
-const posts = [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }]
-const helper = new Helper({ config, posts })
+const data = {
+  posts: [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }],
+  pages: [{ id: 2 }, { id: 3 }],
+  categories: [{ id: 4 }],
+  tags: [{ id: 5 }]
+}
+const helper = new Helper({ config, date })
 const {
+  _pages,
   _posts,
+  _categories,
+  _tags,
   _url,
   _time,
   __,
   _n,
 } = helper.methods
 
-console.log(_posts())           // [ { id: 0, title: 'title0' }, { id: 1, title: 'title1' } ]
-console.log(_posts(0))          // { id: 0, title: 'title0' }
-console.log(_url())             // /
-console.log(_url('path'))       // /path
+console.log(_posts())             // [ { id: 0, title: 'title0' }, { id: 1, title: 'title1' } ]
+console.log(_posts(0))            // { id: 0, title: 'title0' }
+console.log(_pages()[0].id)       // 2
+console.log(_pages(3).id)         // 3
+console.log(_categories()[0].id)  // 4
+console.log(_tags()[0].id)        // 5
+console.log(_url())               // /
+console.log(_url('path'))         // /path
 console.log(_time('2017-11-15T10:50:55Z', 'MMMM DD, YYYY'))   // November 15, 2017
-console.log(__('title'))        // AcyOrt
+console.log(__('title'))          // AcyOrt
 console.log(__('powered', 'GitHub', 'AcyOrt'))  // Powered by AcyOrt | GitHub
-console.log(_n('posts', 0))     // No posts.
-console.log(_n('posts', 1))     // 1 post.
-console.log(_n('posts', 100))   // 100 posts in total.
+console.log(_n('posts', 0))       // No posts.
+console.log(_n('posts', 1))       // 1 post.
+console.log(_n('posts', 100))     // 100 posts in total.
 
 const fn = s => s.split('').join('.')
 
