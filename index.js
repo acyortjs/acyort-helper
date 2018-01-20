@@ -4,9 +4,15 @@ const I18n = require('./i18n')
 const path = require('path')
 
 class Helper extends I18n {
-  constructor({ config, posts }) {
+  constructor({ config, data }) {
     super(config)
 
+    const {
+      posts,
+      pages,
+      categories,
+      tags,
+    } = data
     const {
       language,
       timezone,
@@ -19,12 +25,20 @@ class Helper extends I18n {
     this.methods = {
       __,
       _n: __n,
-      _posts: (id) => {
+      _pages(id) {
+        if (id === undefined) {
+          return pages
+        }
+        return pages.find(p => p.id === id)
+      },
+      _posts(id) {
         if (id === undefined) {
           return posts
         }
         return posts.find(p => p.id === id)
       },
+      _categories: () => categories,
+      _tags: () => tags,
       _url: dir => path.join(root, dir || ''),
       _time: (time, format) => momentTz(moment(time), timezone).format(format),
     }

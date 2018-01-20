@@ -1,6 +1,6 @@
 {
   "name": "acyort-helper",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Helper functions for AcyOrt",
   "main": "index.js",
   "scripts": {

@@ -21,10 +21,18 @@ const config = {
   theme: 'ccc45',
   base: __dirname,
 }
-const posts = [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }]
-const helper = new Helper({ config, posts })
+const data = {
+  posts: [{ id: 0, title: 'title0' }, { id: 1, title: 'title1' }],
+  pages: [{ id: 2 }, { id: 3 }],
+  categories: [{ id: 4 }],
+  tags: [{ id: 5 }]
+}
+const helper = new Helper({ config, data })
 const {
   _posts,
+  _pages,
+  _categories,
+  _tags,
   _url,
   _time,
   __,
@@ -32,13 +40,17 @@ const {
 } = helper.methods
 
 describe('helper', () => {
-  it('posts data', () => {
+  it('data', () => {
     assert(_posts()[0].id === 0)
     assert(_posts(0).id === 0)
-
-    posts.push({ id: 2, title: 'title2' })
-
+    data.posts.push({ id: 2, title: 'title2' })
     assert(_posts().length === 3)
+
+    assert(_pages()[0].id === 2)
+    assert(_pages(3).id === 3)
+
+    assert(_categories()[0].id === 4)
+    assert(_tags()[0].id === 5)
   })
 
   it('url', () => {
