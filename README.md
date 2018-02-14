@@ -61,6 +61,8 @@ console.log(_pages()[0].id)       // 2
 console.log(_pages(3).id)         // 3
 console.log(_categories()[0].id)  // 4
 console.log(_tags()[0].id)        // 5
+console.log(_categories(4).id)    // 4
+console.log(_tags(5).id)          // 5
 console.log(_url())               // /
 console.log(_url('path'))         // /path
 console.log(_time('2017-11-15T10:50:55Z', 'MMMM DD, YYYY'))   // November 15, 2017
@@ -73,7 +75,7 @@ console.log(_n('posts', 100))     // 100 posts in total.
 const fn = s => s.split('').join('.')
 
 // add custom helper function
-helper.addMethod('_js', fn)
+helper.register('_js', fn)
 console.log(helper.methods._js('ab'))   // a.b
 
 text = `title: Mirror
@@ -85,7 +87,7 @@ posts:
 
 // reload the language file
 fs.writeFileSync(yml, text)
-helper.resetLocales()
+helper.resetLocale()
 
 console.log(__('title'))    // Mirror
 ```
