@@ -1,18 +1,12 @@
 const moment = require('moment')
 const momentTz = require('moment-timezone')
-const I18n = require('./i18n')
+const I18n = require('./lib/i18n')
+const methods = require('./lib/methods')
 const path = require('path')
 
 class Helper extends I18n {
   constructor({ config, data }) {
     super(config)
-
-    const {
-      posts,
-      pages,
-      categories,
-      tags,
-    } = data
     const {
       language,
       timezone,
@@ -22,29 +16,15 @@ class Helper extends I18n {
 
     moment.locale(language)
 
-    this.methods = {
+    this.methods = Object.assign(methods(data), {
       __,
       _n: __n,
-      _pages(id) {
-        if (id === undefined) {
-          return pages
-        }
-        return pages.find(p => p.id === id)
-      },
-      _posts(id) {
-        if (id === undefined) {
-          return posts
-        }
-        return posts.find(p => p.id === id)
-      },
-      _categories: () => categories,
-      _tags: () => tags,
       _url: dir => path.join(root, dir || ''),
       _time: (time, format) => momentTz(moment(time), timezone).format(format),
-    }
+    })
   }
 
-  addMethod(name, fn) {
+  register(name, fn) {
     if (typeof fn === 'function' && !this.methods[name]) {
       this.methods[name] = fn
     }

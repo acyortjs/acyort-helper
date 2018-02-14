@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/acyortjs/acyort-helper.svg?branch=master)](https://travis-ci.org/acyortjs/acyort-helper)
 [![codecov](https://codecov.io/gh/acyortjs/acyort-helper/branch/master/graph/badge.svg)](https://codecov.io/gh/acyortjs/acyort-helper)
 
-Helper functions for [AcyOrt](https://github.com/acyortjs/acyort)
+Helpers for [AcyOrt](https://github.com/acyortjs/acyort)
 
 ## Install
 

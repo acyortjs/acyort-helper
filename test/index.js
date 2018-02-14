@@ -28,6 +28,7 @@ const data = {
   tags: [{ id: 5 }]
 }
 const helper = new Helper({ config, data })
+
 const {
   _posts,
   _pages,
@@ -51,6 +52,8 @@ describe('helper', () => {
 
     assert(_categories()[0].id === 4)
     assert(_tags()[0].id === 5)
+    assert(_categories(4).id === 4)
+    assert(_tags(5).id === 5)
   })
 
   it('url', () => {
@@ -70,11 +73,11 @@ describe('helper', () => {
     assert(_n('posts', 100) === '100 posts in total.')
   })
 
-  it('add helper', () => {
+  it('register helper', () => {
     const fn = s => s.split('').join('.') + config.theme
-    helper.addMethod('_js', fn)
+    helper.register('_js', fn)
     assert(helper.methods._js('ab') === 'a.bccc45')
-    helper.addMethod('_css', 'no a function')
+    helper.register('_css', 'no a function')
     assert(helper.methods._css === undefined)
   })
 
@@ -87,7 +90,7 @@ posts:
   other: %d posts in total.`
 
     fs.writeFileSync(yml, text)
-    helper.resetLocales()
+    helper.resetLocale()
 
     assert(__('title') === 'Mirror')
   })

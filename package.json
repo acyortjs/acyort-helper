@@ -1,7 +1,7 @@
 {
   "name": "acyort-helper",
-  "version": "0.1.8",
-  "description": "Helper functions for AcyOrt",
+  "version": "1.0.0",
+  "description": "Helpers for AcyOrt",
   "main": "index.js",
   "scripts": {
     "test": "npm run test:lint && npm run test:cover",
@@ -34,9 +34,9 @@
     "power-assert": "^1.4.4"
   },
   "dependencies": {
-    "acyort-i18n": "^0.1.4",
-    "acyort-render": "^0.1.0",
+    "acyort-i18n": "^1.0.0",
     "moment": "^2.19.3",
-    "moment-timezone": "^0.5.14"
+    "moment-timezone": "^0.5.14",
+    "yamljs": "^0.3.0"
   }
 }
