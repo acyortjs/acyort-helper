@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const assert = require('power-assert')
+const expect = require('expect')
 const Helper = require('../')
 
 let text = `title: AcyOrt
@@ -77,8 +78,9 @@ describe('helper', () => {
     const fn = s => s.split('').join('.') + config.theme
     helper.register('_js', fn)
     assert(helper.methods._js('ab') === 'a.bccc45')
-    helper.register('_css', 'no a function')
-    assert(helper.methods._css === undefined)
+
+    expect(() => { helper.register('_js', fn) }).toThrow('Error helper function: _js. Duplication or No a function')
+    expect(() => { helper.register('_css', 'no a function') }).toThrow('Error helper function: _css. Duplication or No a function')
   })
 
   it('reset', () => {

@@ -27,6 +27,8 @@ class Helper extends I18n {
   register(name, fn) {
     if (typeof fn === 'function' && !this.methods[name]) {
       this.methods[name] = fn
+    } else {
+      throw new Error(`Error helper function: ${name}. Duplication or No a function`)
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "acyort-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helpers for AcyOrt",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "eslint": "^4.12.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "expect": "^22.4.0",
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.1",
