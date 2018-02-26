@@ -90,4 +90,7 @@ fs.writeFileSync(yml, text)
 helper.resetLocale()
 
 console.log(__('title'))    // Mirror
+
+helper.resetLocale('zh-cn') // use zh-cn language
+console.log(__('title'))    // 中文
 ```
