@@ -95,5 +95,10 @@ posts:
     helper.resetLocale()
 
     assert(__('title') === 'Mirror')
+
+    helper.resetLocale('zh-cn')
+    assert(__('title') === '中文')
+
+    expect(() => { helper.resetLocale('zh') }).toThrow('Language file "zh" error')
   })
 })
