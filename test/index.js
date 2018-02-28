@@ -10,12 +10,12 @@ posts:
   zero: No posts.
   one: 1 post.
   other: %d posts in total.`
-const yml = path.join(__dirname, 'themes/ccc45/i18n', 'default.yml')
+const yml = path.join(__dirname, 'themes/ccc45/i18n', 'en.yml')
 
 fs.writeFileSync(yml, text)
 
 const config = {
-  language: 'default',
+  language: 'en',
   timezone: 'UTC',
   root: '/',
   i18n_dir: 'i18n',
@@ -99,6 +99,9 @@ posts:
     helper.resetLocale('zh-cn')
     assert(__('title') === '中文')
     assert(_time('2017-11-15T10:50:55Z', 'MMM DD, YYYY') === '11月 15, 2017')
+
+    helper.resetLocale('en')
+    assert(_time('2017-11-15T10:50:55Z', 'MMM DD, YYYY') === 'Nov 15, 2017')
 
     expect(() => { helper.resetLocale('zh') }).toThrow('Language file "zh" error')
   })
