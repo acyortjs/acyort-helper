@@ -98,6 +98,7 @@ posts:
 
     helper.resetLocale('zh-cn')
     assert(__('title') === '中文')
+    assert(_time('2017-11-15T10:50:55Z', 'MMM DD, YYYY') === '11月 15, 2017')
 
     expect(() => { helper.resetLocale('zh') }).toThrow('Language file "zh" error')
   })
