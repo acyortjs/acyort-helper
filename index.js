@@ -6,16 +6,21 @@ const path = require('path')
 class Helper extends I18n {
   constructor({ config, data }) {
     super(config)
+
+    this.config = config
+    this.data = data
+    this.methods = this.getMethods()
+    this.moment.locale(config.language)
+  }
+
+  getMethods() {
     const {
-      language,
-      timezone,
-      root,
-    } = config
-    const { __, __n } = this.i18n
+      data,
+      config: { root, timezone },
+      i18n: { __, __n },
+    } = this
 
-    this.moment.locale(language)
-
-    this.methods = Object.assign(methods(data), {
+    return Object.assign(methods(data), {
       __,
       _n: __n,
       _url: dir => path.join(root, dir || ''),
@@ -29,6 +34,10 @@ class Helper extends I18n {
     } else {
       throw new Error(`Error helper function: ${name}. Duplication or No a function`)
     }
+  }
+
+  reset() {
+    this.methods = this.getMethods()
   }
 }
 

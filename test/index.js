@@ -105,4 +105,9 @@ posts:
 
     expect(() => { helper.resetLocale('zh') }).toThrow('Language file "zh" error')
   })
+
+  it('reset function', () => {
+    helper.reset()
+    assert(Object.keys(helper.methods).length === 8)
+  })
 })
